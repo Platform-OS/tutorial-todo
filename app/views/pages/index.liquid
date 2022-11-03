@@ -1,0 +1,24 @@
+{% liquid
+  graphql items = 'item/search'
+%}
+
+<ul>
+  {% for item in items.records.results %}
+    <li>
+      {{ item.title }}
+      <form action="/item/delete" method="post">
+        <input type="hidden" name="id" value="{{ item.id }}">
+        <button type="submit">Mark as done</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+
+{% if items.records.total_entries == 0 %}
+  <div>There are no items in the list.</div>
+{% endif %}
+
+<form action="/item/create" method="post">
+  <input type="text" name="title">
+  <button type="submit">Add item</button>
+</form>
