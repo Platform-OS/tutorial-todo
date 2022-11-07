@@ -2,6 +2,7 @@
   graphql items = 'item/search'
 %}
 
+<!-- list of items -->
 <ul>
   {% for item in items.records.results %}
     <li>
@@ -14,11 +15,16 @@
   {% endfor %}
 </ul>
 
+<!-- information shown when the list is empty -->
 {% if items.records.total_entries == 0 %}
   <div>There are no items in the list.</div>
 {% endif %}
 
+<!-- form for adding new item -->
 <form action="/item/create" method="post">
   <input type="text" name="title">
   <button type="submit">Add item</button>
 </form>
+
+<!-- link to the About Me page -->
+<a href="/about">About Me</a>
